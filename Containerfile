@@ -7,7 +7,14 @@ COPY repos/mullvad.repo /etc/yum.repos.d/mullvad.repo
 
 RUN dnf install -y \
         brave-browser \
-        mullvad-vpn
+        mullvad-vpn && \
+    dnf remove -y \
+        firefox \
+        firefox-langpacks \
+        gnome-tour \
+        malcontent-control \
+        toolbox \
+        yelp
 
 RUN systemctl enable \
         mullvad-daemon \
