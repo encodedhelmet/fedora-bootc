@@ -14,7 +14,8 @@ RUN dnf install -y \
         gnome-tour \
         malcontent-control \
         toolbox \
-        yelp
+        yelp && \
+    dnf clean all
 
 RUN systemctl enable \
         mullvad-daemon \
