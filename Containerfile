@@ -6,8 +6,8 @@ COPY repos/brave-browser.repo /etc/yum.repos.d/brave-browser.repo
 COPY repos/mullvad.repo /etc/yum.repos.d/mullvad.repo
 
 RUN dnf install -y \
-    brave-browser \
-    mullvad-vpn
+        brave-browser \
+        mullvad-vpn
 
 RUN systemctl enable \
         mullvad-daemon \
