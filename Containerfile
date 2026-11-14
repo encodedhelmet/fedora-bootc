@@ -9,6 +9,7 @@ RUN rm -rf /opt && \
     mkdir /opt && \
     dnf install -y \
         brave-browser \
+        distrobox \
         mullvad-vpn && \
     dnf remove -y \
         firefox \
