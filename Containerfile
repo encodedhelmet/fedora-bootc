@@ -7,7 +7,7 @@ COPY repos/google-chrome.repo /etc/yum.repos.d/
 COPY repos/mullvad.repo /etc/yum.repos.d/
 
 RUN rm /opt && \
-    mkdir /opt \
+    mkdir /opt && \
     dnf install -y \
         brave-browser \
         distrobox \
