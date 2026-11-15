@@ -51,4 +51,13 @@ RUN systemctl enable \
         mullvad-daemon \
         mullvad-early-boot-blocking
 
+RUN rm -rf \
+        /boot/* \
+        /run/akmods \
+        /run/dnf \
+        /var/cache/* \
+        /var/lib/dnf \
+        /var/lib/rpm-state \
+        /var/log/*
+
 RUN bootc container lint
