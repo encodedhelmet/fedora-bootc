@@ -6,7 +6,12 @@ COPY repos/brave-browser.repo /etc/yum.repos.d/
 COPY repos/google-chrome.repo /etc/yum.repos.d/
 COPY repos/mullvad.repo /etc/yum.repos.d/
 
-RUN dnf remove -y \
+RUN dnf install -y \
+        brave-browser \
+        distrobox \
+        google-chrome-stable \
+        mullvad-vpn && \
+    dnf remove -y \
         firefox \
         firefox-langpacks \
         gnome-tour \
