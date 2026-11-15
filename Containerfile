@@ -4,6 +4,7 @@ FROM quay.io/fedora/fedora-silverblue:${FEDORA_MAJOR_VERSION}
 
 COPY repos/brave-browser.repo /etc/yum.repos.d/
 COPY repos/google-chrome.repo /etc/yum.repos.d/
+COPY repos/mullvad.repo /etc/yum.repos.d/
 
 RUN dnf remove -y \
         firefox \
