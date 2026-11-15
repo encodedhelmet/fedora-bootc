@@ -10,7 +10,8 @@ RUN dnf install -y \
         https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
     dnf clean all
 
-RUN dnf install -y \
+RUN sed -i "/^OSTREE_VERSION='/d" /etc/os-release && \
+    dnf install -y \
         akmod-nvidia \
         xorg-x11-drv-nvidia-cuda && \
     dnf clean all
