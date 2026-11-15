@@ -5,6 +5,19 @@ FROM quay.io/fedora/fedora-silverblue:${FEDORA_MAJOR_VERSION}
 COPY repos/brave-browser.repo /etc/yum.repos.d/
 COPY repos/google-chrome.repo /etc/yum.repos.d/
 COPY repos/mullvad.repo /etc/yum.repos.d/
+RUN dnf install -y \
+        https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+        https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
+    dnf clean all
+
+RUN sed -i "/^OSTREE_VERSION='/d" /etc/os-release && \
+    dnf install -y \
+        akmod-nvidia \
+        xorg-x11-drv-nvidia-cuda && \
+    dnf clean all && \
+    akmods --force --kernels $(rpm -q kernel-devel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')
+
+COPY files/00-nvidia.toml /usr/lib/bootc/kargs.d/
 
 RUN rm /opt && \
     mkdir /opt && \
