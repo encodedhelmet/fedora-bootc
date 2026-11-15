@@ -18,7 +18,7 @@ RUN sed -i "/^OSTREE_VERSION='/d" /etc/os-release && \
     akmods --force --kernels $(rpm -q kernel-devel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')
 
 RUN mkdir -p /usr/lib/bootc/kargs.d && \
-    cat <<EOF > /usr/lib/bootc/kargs.d/00-nvidia.toml
+    cat > /usr/lib/bootc/kargs.d/00-nvidia.toml <<EOF
 kargs = [
     "rd.driver.blacklist=nouveau,nova_core",
     "modprobe.blacklist=nouveau,nova_core"
