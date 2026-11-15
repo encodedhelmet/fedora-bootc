@@ -27,7 +27,7 @@ RUN sed -i "/^OSTREE_VERSION='/d" /etc/os-release && \
         akmod-nvidia \
         xorg-x11-drv-nvidia-cuda && \
     dnf clean all && \
-    akmods --force --kernels $(rpm -q kernel-devel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')
+    akmods --force --kernels $(ls /usr/lib/modules)
 
 COPY files/00-nvidia.toml /usr/lib/bootc/kargs.d/
 
