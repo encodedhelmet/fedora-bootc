@@ -20,4 +20,8 @@ RUN dnf install -y \
         yelp && \
     dnf clean all
 
+RUN systemctl enable \
+        mullvad-daemon \
+        mullvad-early-boot-blocking
+
 RUN bootc container lint
