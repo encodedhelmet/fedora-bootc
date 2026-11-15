@@ -11,6 +11,10 @@ RUN dnf install -y \
     dnf clean all
 
 RUN dnf install -y \
+        akmod-nvidia \
+        xorg-x11-drv-nvidia-cuda
+
+RUN dnf install -y \
         brave-browser \
         distrobox \
         google-chrome-stable \
