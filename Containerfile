@@ -17,13 +17,7 @@ RUN sed -i "/^OSTREE_VERSION='/d" /etc/os-release && \
     dnf clean all && \
     akmods --force --kernels $(rpm -q kernel-devel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')
 
-RUN mkdir -p /usr/lib/bootc/kargs.d && \
-    cat > /usr/lib/bootc/kargs.d/00-nvidia.toml <<EOF
-kargs = [
-    "rd.driver.blacklist=nouveau,nova_core",
-    "modprobe.blacklist=nouveau,nova_core"
-]
-EOF
+COPY files/00-nvidia.toml /usr/lib/bootc/kargs.d/
 
 RUN dnf install -y \
         brave-browser \
