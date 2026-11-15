@@ -12,7 +12,8 @@ RUN dnf install -y \
 
 RUN dnf install -y \
         akmod-nvidia \
-        xorg-x11-drv-nvidia-cuda
+        xorg-x11-drv-nvidia-cuda && \
+    dnf clean all
 
 RUN dnf install -y \
         brave-browser \
