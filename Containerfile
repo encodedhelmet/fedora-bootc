@@ -2,6 +2,22 @@ ARG BASE_IMAGE=quay.io/fedora/fedora-silverblue
 ARG BUILD_IMAGE=quay.io/fedora/fedora-bootc
 ARG FEDORA_MAJOR_VERSION=45
 
+FROM ${BUILD_IMAGE}:${FEDORA_MAJOR_VERSION} AS builder
+
+RUN dnf install -y \
+        https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+        https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
+    dnf copr enable -y \
+        bieszczaders/kernel-cachyos && \
+    dnf install -y \
+        akmods \
+        akmod-nvidia \
+        kernel-cachyos \
+        kernel-cachyos-devel-matched && \
+    akmods --force --kernels $(rpm -q kernel-cachyos-devel-matched --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}') && \
+    mkdir -p /rpms && \
+    cp /var/cache/akmods/nvidia/*.rpm /rpms/
+
 FROM quay.io/fedora/fedora-silverblue:${FEDORA_MAJOR_VERSION}
 
 COPY repos/brave-browser.repo /etc/yum.repos.d/
