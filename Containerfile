@@ -26,6 +26,7 @@ COPY repos/brave-browser.repo /etc/yum.repos.d/
 COPY repos/google-chrome.repo /etc/yum.repos.d/
 COPY repos/mullvad.repo /etc/yum.repos.d/
 COPY files/00-nvidia.toml /usr/lib/bootc/kargs.d/
+
 RUN --mount=type=bind,from=builder,src=/rpms,destination=/rpms \
     dnf install -y \
         https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
@@ -60,6 +61,7 @@ RUN --mount=type=bind,from=builder,src=/rpms,destination=/rpms \
     systemctl enable \
         mullvad-daemon \
         mullvad-early-boot-blocking && \
+    dnf clean all && \
     rm -rf \
         /boot/* \
         /run/akmods \
@@ -68,5 +70,4 @@ RUN --mount=type=bind,from=builder,src=/rpms,destination=/rpms \
         /var/lib/dnf \
         /var/lib/rpm-state \
         /var/log/* && \
-    dnf clean all && \
     bootc container lint
