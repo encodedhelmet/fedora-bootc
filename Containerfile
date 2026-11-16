@@ -3,7 +3,7 @@ ARG BUILD_IMAGE=quay.io/fedora/fedora-bootc
 ARG FEDORA_MAJOR_VERSION=45
 
 FROM scratch AS ctx
-copy /build_scripts /build_scripts
+COPY /build_scripts /build_scripts
 
 FROM ${BUILD_IMAGE}:${FEDORA_MAJOR_VERSION} AS builder
 
