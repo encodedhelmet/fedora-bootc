@@ -31,18 +31,18 @@ RUN dnf install -y \
         bieszczaders/kernel-cachyos && \
     dnf install -y \
         kernel-cachyos \
-        kernel-cachyos-devel-matched && \
+#        kernel-cachyos-devel-matched && \
     dnf remove -y \
         kernel \
         kernel-core \
         kernel-modules \
         kernel-modules-core \
         kernel-modules-extra && \
-    sed -i "/^OSTREE_VERSION='/d" /etc/os-release && \
+#    sed -i "/^OSTREE_VERSION='/d" /etc/os-release && \
     dnf install -y \
-        akmod-nvidia \
+#        akmod-nvidia \
         xorg-x11-drv-nvidia-cuda && \
-    akmods --force --kernels $(ls /usr/lib/modules) && \
+#    akmods --force --kernels $(ls /usr/lib/modules) && \
     rm /opt && \
     mkdir /opt && \
     dnf install -y \
