@@ -3,7 +3,9 @@ ARG BUILD_IMAGE=quay.io/fedora/fedora-bootc
 ARG FEDORA_MAJOR_VERSION=45
 
 FROM scratch AS ctx
-COPY /build_scripts /build_scripts
+COPY build_scripts /build_scripts
+COPY repos /repos
+COPY files /files
 
 FROM ${BUILD_IMAGE}:${FEDORA_MAJOR_VERSION} AS builder
 
@@ -12,10 +14,6 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
 
 FROM ${BASE_IMAGE}:${FEDORA_MAJOR_VERSION}
 
-COPY repos/brave-browser.repo /etc/yum.repos.d/
-COPY repos/google-chrome.repo /etc/yum.repos.d/
-COPY repos/mullvad.repo /etc/yum.repos.d/
-COPY files/00-nvidia.toml /usr/lib/bootc/kargs.d/
 
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=bind,from=builder,src=/rpms,destination=/rpms \

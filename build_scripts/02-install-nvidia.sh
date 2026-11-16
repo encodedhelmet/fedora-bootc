@@ -17,3 +17,5 @@ dnf remove -y \
 dnf install -y \
     /rpms/*.rpm \
     xorg-x11-drv-nvidia-cuda
+mkdir -p /usr/lib/bootc/kargs.d/
+cp /ctx/files/00-nvidia.toml /usr/lib/bootc/kargs.d/
