@@ -60,6 +60,7 @@ RUN --mount=type=bind,from=builder,src=/rpms,destination=/rpms \
     systemctl enable \
         mullvad-daemon \
         mullvad-early-boot-blocking && \
+    dnf clean all && \
     rm -rf \
         /boot/* \
         /run/akmods \
@@ -68,5 +69,4 @@ RUN --mount=type=bind,from=builder,src=/rpms,destination=/rpms \
         /var/lib/dnf \
         /var/lib/rpm-state \
         /var/log/* && \
-    dnf clean all && \
     bootc container lint
