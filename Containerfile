@@ -20,20 +20,7 @@ COPY files/00-nvidia.toml /usr/lib/bootc/kargs.d/
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=bind,from=builder,src=/rpms,destination=/rpms \
     /ctx/build_scripts/02-install-nvidia.sh && \
-    rm /opt && \
-    mkdir /opt && \
-    dnf install -y \
-        brave-browser \
-        distrobox \
-        google-chrome-stable \
-        mullvad-vpn && \
-    dnf remove -y \
-        firefox \
-        firefox-langpacks \
-        gnome-tour \
-        malcontent-control \
-        toolbox \
-        yelp && \
+    /ctx/build_scripts/03-packages.sh && \
     systemctl enable \
         mullvad-daemon \
         mullvad-early-boot-blocking && \
