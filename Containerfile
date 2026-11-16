@@ -14,12 +14,9 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
 
 FROM ${BASE_IMAGE}:${FEDORA_MAJOR_VERSION}
 
-
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=bind,from=builder,src=/rpms,destination=/rpms \
     /ctx/build_scripts/02-install-nvidia.sh && \
     /ctx/build_scripts/03-packages.sh && \
     /ctx/build_scripts/04-systemd.sh && \
-    /ctx/build_scripts/05-cleanup.sh && \
-    dnf clean all && \
-    bootc container lint
+    /ctx/build_scripts/05-cleanup.sh
