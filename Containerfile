@@ -18,7 +18,7 @@ RUN dnf install -y \
     mkdir -p /rpms && \
     cp /var/cache/akmods/nvidia/*.rpm /rpms/
 
-FROM quay.io/fedora/fedora-silverblue:${FEDORA_MAJOR_VERSION}
+FROM ${BASE_IMAGE}:${FEDORA_MAJOR_VERSION}
 
 COPY repos/brave-browser.repo /etc/yum.repos.d/
 COPY repos/google-chrome.repo /etc/yum.repos.d/
