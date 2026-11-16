@@ -1,3 +1,5 @@
+ARG BASE_IMAGE=quay.io/fedora/fedora-silverblue
+ARG BUILD_IMAGE=quay.io/fedora/fedora-bootc
 ARG FEDORA_MAJOR_VERSION=45
 
 FROM quay.io/fedora/fedora-silverblue:${FEDORA_MAJOR_VERSION}
