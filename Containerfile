@@ -17,23 +17,9 @@ COPY repos/google-chrome.repo /etc/yum.repos.d/
 COPY repos/mullvad.repo /etc/yum.repos.d/
 COPY files/00-nvidia.toml /usr/lib/bootc/kargs.d/
 
-RUN --mount=type=bind,from=builder,src=/rpms,destination=/rpms \
-    dnf install -y \
-        https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
-        https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
-    dnf copr enable -y \
-        bieszczaders/kernel-cachyos && \
-    dnf install -y \
-        kernel-cachyos && \
-    dnf remove -y \
-        kernel \
-        kernel-core \
-        kernel-modules \
-        kernel-modules-core \
-        kernel-modules-extra && \
-    dnf install -y \
-        /rpms/*.rpm \
-        xorg-x11-drv-nvidia-cuda && \
+RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
+    --mount=type=bind,from=builder,src=/rpms,destination=/rpms \
+    /ctx/build_scripts/02-install-nvidia.sh && \
     rm /opt && \
     mkdir /opt && \
     dnf install -y \
