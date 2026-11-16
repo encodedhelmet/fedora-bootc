@@ -8,7 +8,7 @@ RUN dnf install -y \
         https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
         https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
     dnf install -y \
-        dnf-plugins-core && \
+        dnf5-plugins && \
     dnf copr enable -y \
         bieszczaders/kernel-cachyos && \
     dnf install -y \
