@@ -26,6 +26,7 @@ COPY repos/brave-browser.repo /etc/yum.repos.d/
 COPY repos/google-chrome.repo /etc/yum.repos.d/
 COPY repos/mullvad.repo /etc/yum.repos.d/
 COPY files/00-nvidia.toml /usr/lib/bootc/kargs.d/
+
 RUN --mount=type=bind,from=builder,src=/rpms,destination=/rpms \
     dnf install -y \
         https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
