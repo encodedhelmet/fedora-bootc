@@ -7,6 +7,7 @@ cp /ctx/repos/*.repo /etc/yum.repos.d/
 dnf install -y \
     brave-browser \
     distrobox \
+    gnome-tweaks \
     google-chrome-stable \
     mullvad-vpn
 dnf remove -y \
