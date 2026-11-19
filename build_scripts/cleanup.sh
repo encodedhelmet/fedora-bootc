@@ -9,4 +9,3 @@ rm -rf \
     /var/lib/dnf \
     /var/lib/rpm-state \
     /var/log/*
-bootc container lint
