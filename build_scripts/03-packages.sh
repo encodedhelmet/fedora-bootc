@@ -11,5 +11,3 @@ dnf install -y \
 dnf remove -y \
     firefox \
     firefox-langpacks
-dnf group install -y --with-optional \
-    virtualization
