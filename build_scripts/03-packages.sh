@@ -11,4 +11,4 @@ dnf install -y \
     mullvad-vpn
 dnf remove -y \
     firefox \
-    firefox-langpacks \
+    firefox-langpacks
