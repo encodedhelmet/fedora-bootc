@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=quay.io/fedora/fedora-kinoite
+ARG BASE_IMAGE=quay.io/fedora/fedora-cosmic-atomic
 ARG BUILD_IMAGE=quay.io/fedora/fedora-bootc
 ARG FEDORA_MAJOR_VERSION=45
 
