@@ -12,7 +12,3 @@ dnf install -y \
 dnf remove -y \
     firefox \
     firefox-langpacks \
-    gnome-tour \
-    malcontent-control \
-    toolbox \
-    yelp
